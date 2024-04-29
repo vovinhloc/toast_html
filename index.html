@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alert5</title>
+    <!-- <script
+      src="https://kit.fontawesome.com/c7b5b18716.js"
+      crossorigin="anonymous"
+    ></script> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="buttons">
+      <button onclick="showToast(successMessage,0)">Success</button>
+      <button onclick="showToast(invalidMessage,1)" type="button">
+        Invalid
+      </button>
+      <button onclick="showToast(errorMessage,2)">Error</button>
+    </div>
+
+    <div id="toastBox"></div>
+    <script>
+      let toastBox = document.getElementById("toastBox");
+      let successMessage = "<i class='fa-solid fa-circle-check'></i> success";
+      let invalidMessage =
+        "<i class='fa-solid fa-circle-exclamation'></i> invalid";
+      let errorMessage = "<i class='fa-solid fa-circle-xmark'></i> error";
+      function showToast(msg, type) {
+        let toast = document.createElement("div");
+        toast.innerHTML = msg;
+        toast.classList.add("toast");
+        toastBox.appendChild(toast);
+        let x = document.createElement("button");
+        x.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        x.classList.add("closeBtn");
+        x.addEventListener("click", (e) => {
+          toast.remove();
+        });
+        toast.appendChild(x);
+        switch (type) {
+          case 0:
+            break;
+          case 1:
+            toast.classList.add("invalid");
+            break;
+          case 2:
+            toast.classList.add("error");
+            break;
+
+          default:
+            break;
+        }
+
+        // setTimeout(() => {
+        //   toast.remove();
+        // }, 6000);
+      }
+    </script>
+  </body>
+</html>
